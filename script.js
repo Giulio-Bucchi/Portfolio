@@ -31,26 +31,7 @@ document.querySelectorAll('.fade-in').forEach(el => {
   observer.observe(el);
 });
 
-// Animate skill progress bars when they come into view
-const skillCards = document.querySelectorAll('.skill-card');
-const skillObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      const progress = entry.target.querySelector('.skill-progress');
-      if (progress) {
-        const width = progress.style.width;
-        progress.style.width = '0%';
-        setTimeout(() => {
-          progress.style.width = width;
-        }, 100);
-      }
-    }
-  });
-}, observerOptions);
 
-skillCards.forEach(card => {
-  skillObserver.observe(card);
-});
 
 // Add floating animation to hero section
 const hero = document.querySelector('.hero h1');
@@ -102,3 +83,38 @@ if (subtitle) {
   
   setTimeout(typeWriter, 1000);
 }
+
+function adjustSkillsLayout() {
+  const skillsSection = document.getElementById('skills');
+  const dnaContainer = document.querySelector('.dna-container');
+  
+  if (window.innerWidth < 768) {
+    dnaContainer.style.height = '600px';
+    // Riorganizza le skill per mobile
+    document.querySelectorAll('.skill-card-dna').forEach((card, index) => {
+      card.style.position = 'relative';
+      card.style.top = 'auto';
+      card.style.left = 'auto';
+      card.style.display = 'inline-block';
+      card.style.margin = '10px';
+    });
+  } else {
+    dnaContainer.style.height = '400px';
+    // Ripristina layout desktop
+    document.querySelectorAll('.skill-card-dna').forEach((card, index) => {
+      card.style.position = 'absolute';
+      card.style.display = 'flex';
+      // Ripristina le posizioni originali
+      const positions = [
+        { top: '10%', left: '20%' }, { top: '15%', right: '25%' },
+        // ... altre posizioni ...
+      ];
+      if (positions[index]) {
+        Object.assign(card.style, positions[index]);
+      }
+    });
+  }
+}
+
+window.addEventListener('resize', adjustSkillsLayout);
+window.addEventListener('load', adjustSkillsLayout);
