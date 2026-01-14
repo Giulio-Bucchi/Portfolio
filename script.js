@@ -1,120 +1,106 @@
-// Smooth scrolling for navigation links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', function (e) {
-    e.preventDefault();
-    const target = document.querySelector(this.getAttribute('href'));
-    if (target) {
-      target.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
-      });
-    }
-  });
-});
+document.addEventListener('DOMContentLoaded', () => {
+  // Remove loading state
+  document.documentElement.classList.add('loaded');
 
-// Intersection Observer for fade-in animations
-const observerOptions = {
-  threshold: 0.1,
-  rootMargin: '0px 0px -50px 0px'
-};
+  // Footer year
+  const currentYearEl = document.getElementById('currentYear');
+  if (currentYearEl) currentYearEl.textContent = String(new Date().getFullYear());
 
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-    }
-  });
-}, observerOptions);
-
-// Observe all fade-in elements
-document.querySelectorAll('.fade-in').forEach(el => {
-  observer.observe(el);
-});
-
-
-
-// Add floating animation to hero section
-const hero = document.querySelector('.hero h1');
-if (hero) {
-  setInterval(() => {
-    hero.style.transform = 'translateY(-5px)';
-    setTimeout(() => {
-      hero.style.transform = 'translateY(0)';
-    }, 1000);
-  }, 3000);
-}
-
-// Add project card hover effects
-const projectCards = document.querySelectorAll('.project-card');
-projectCards.forEach(card => {
-  card.addEventListener('mouseenter', () => {
-    card.style.background = 'rgba(26, 26, 26, 0.8)';
-  });
-  
-  card.addEventListener('mouseleave', () => {
-    card.style.background = 'var(--card-bg)';
-  });
-});
-
-// Header background on scroll
-window.addEventListener('scroll', () => {
-  const header = document.querySelector('header');
-  if (window.scrollY > 100) {
-    header.style.background = 'rgba(0, 0, 0, 0.95)';
-  } else {
-    header.style.background = 'rgba(0, 0, 0, 0.8)';
-  }
-});
-
-// Add typing effect to hero subtitle
-const subtitle = document.querySelector('.hero p');
-if (subtitle) {
-  const text = subtitle.textContent;
-  subtitle.textContent = '';
-  let i = 0;
-  
-  const typeWriter = () => {
-    if (i < text.length) {
-      subtitle.textContent += text.charAt(i);
-      i++;
-      setTimeout(typeWriter, 50);
-    }
+  // Header scroll state
+  const header = document.querySelector('.header');
+  const setHeaderState = () => {
+    if (!header) return;
+    if (window.scrollY > 24) header.classList.add('scrolled');
+    else header.classList.remove('scrolled');
   };
-  
-  setTimeout(typeWriter, 1000);
-}
+  setHeaderState();
+  window.addEventListener('scroll', setHeaderState, { passive: true });
 
-function adjustSkillsLayout() {
-  const skillsSection = document.getElementById('skills');
-  const dnaContainer = document.querySelector('.dna-container');
-  
-  if (window.innerWidth < 768) {
-    dnaContainer.style.height = '600px';
-    // Riorganizza le skill per mobile
-    document.querySelectorAll('.skill-card-dna').forEach((card, index) => {
-      card.style.position = 'relative';
-      card.style.top = 'auto';
-      card.style.left = 'auto';
-      card.style.display = 'inline-block';
-      card.style.margin = '10px';
+  // Smooth anchor scroll (offset to keep section titles visible under fixed header)
+  const HEADER_OFFSET = 104;
+  const scrollToId = (id) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    const y = el.getBoundingClientRect().top + window.pageYOffset - HEADER_OFFSET;
+    window.scrollTo({ top: y, behavior: 'smooth' });
+  };
+
+  document.querySelectorAll('a[href^="#"]').forEach((a) => {
+    a.addEventListener('click', (e) => {
+      const href = a.getAttribute('href') || '';
+      if (!href.startsWith('#')) return;
+      const id = href.replace('#', '').trim();
+      if (!id) return;
+
+      e.preventDefault();
+      scrollToId(id);
+
+      // Close hamburger menu on mobile after click
+      const hamburger = document.getElementById('hamburger');
+      if (hamburger && hamburger.checked) hamburger.checked = false;
     });
-  } else {
-    dnaContainer.style.height = '400px';
-    // Ripristina layout desktop
-    document.querySelectorAll('.skill-card-dna').forEach((card, index) => {
-      card.style.position = 'absolute';
-      card.style.display = 'flex';
-      // Ripristina le posizioni originali
-      const positions = [
-        { top: '10%', left: '20%' }, { top: '15%', right: '25%' },
-        // ... altre posizioni ...
-      ];
-      if (positions[index]) {
-        Object.assign(card.style, positions[index]);
+  });
+
+  // Fade-in reveals
+  const revealEls = Array.from(document.querySelectorAll('.fade-in'));
+  if ('IntersectionObserver' in window && revealEls.length) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.12,
+        rootMargin: '0px 0px -10% 0px',
       }
-    });
-  }
-}
+    );
 
-window.addEventListener('resize', adjustSkillsLayout);
-window.addEventListener('load', adjustSkillsLayout);
+    revealEls.forEach((el) => observer.observe(el));
+  } else {
+    revealEls.forEach((el) => el.classList.add('visible'));
+  }
+
+  // Projects carousel controls (horizontal scroll)
+  const projectsTrack = document.querySelector('.project-list--scroll');
+  const btnLeft = document.querySelector('.projects-carousel__btn--left');
+  const btnRight = document.querySelector('.projects-carousel__btn--right');
+
+  if (projectsTrack && btnLeft && btnRight) {
+    const step = () => {
+      const firstCard = projectsTrack.querySelector('.project');
+      if (!firstCard) return 320;
+
+      const styles = window.getComputedStyle(projectsTrack);
+      const gap = parseFloat(styles.columnGap || styles.gap || '0') || 0;
+      return firstCard.getBoundingClientRect().width + gap;
+    };
+
+    const update = () => {
+      const maxScrollLeft = projectsTrack.scrollWidth - projectsTrack.clientWidth;
+      const canScroll = maxScrollLeft > 2;
+
+      // keep buttons from overlaying when not needed
+      btnLeft.style.visibility = canScroll ? 'visible' : 'hidden';
+      btnRight.style.visibility = canScroll ? 'visible' : 'hidden';
+
+      btnLeft.disabled = projectsTrack.scrollLeft <= 2;
+      btnRight.disabled = projectsTrack.scrollLeft >= maxScrollLeft - 2;
+    };
+
+    btnLeft.addEventListener('click', () => {
+      projectsTrack.scrollBy({ left: -step(), behavior: 'smooth' });
+    });
+
+    btnRight.addEventListener('click', () => {
+      projectsTrack.scrollBy({ left: step(), behavior: 'smooth' });
+    });
+
+    projectsTrack.addEventListener('scroll', () => window.requestAnimationFrame(update));
+    window.addEventListener('resize', update);
+    update();
+  }
+});

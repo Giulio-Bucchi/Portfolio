@@ -1,174 +1,274 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Portfolio - Bucchi Giulio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <meta name="description" content="Computer Engineering student specializing in embedded systems, IoT, and hardware automation. View my portfolio featuring Arduino, ESP32, VHDL, and web development projects." />
+  <meta name="keywords" content="Computer Engineering, Embedded Systems, IoT, Arduino, ESP32, VHDL, Hardware Automation, Portfolio" />
+  <meta name="author" content="Giulio Bucchi" />
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://giulio-bucchi.github.io/Portfolio/" />
+  <meta property="og:title" content="Giulio Bucchi - Computer Engineering Portfolio" />
+  <meta property="og:description" content="Computer Engineering student specializing in embedded systems, IoT, and hardware automation." />
+  
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="https://giulio-bucchi.github.io/Portfolio/" />
+  <meta property="twitter:title" content="Giulio Bucchi - Computer Engineering Portfolio" />
+  <meta property="twitter:description" content="Computer Engineering student specializing in embedded systems, IoT, and hardware automation." />
+  
+  <title>Giulio Bucchi - Computer Engineering Portfolio</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="Images/logo.svg">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Stylesheet -->
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  
-  <header>
-    <div class="logo">
-       <h1> Bucchi Giulio</h1>
+
+  <header class="header">
+    <input class="hamburger" type="checkbox" aria-label="Menu" />
+
+    <div class="media-header" aria-label="Social links">
+      <span class="media-header__line" aria-hidden="true"></span>
+      <div class="media-header__links">
+        <a class="media" href="mailto:bucchigiulio@gmail.com" aria-label="Email">
+          <img class="media__icon" src="Images/icons/email.svg" alt="" />
+        </a>
+        <a class="media" href="https://github.com/Giulio-Bucchi" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+          <img class="media__icon" src="Images/icons/github.svg" alt="" />
+        </a>
+        <a class="media" href="https://www.linkedin.com/in/giulio-bucchi" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+          <img class="media__icon" src="Images/icons/linkedin.svg" alt="" />
+        </a>
+      </div>
     </div>
-    
-    <nav>
-      <ul class="nav-links">
-        <li><a href="#about">About</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
+
+    <div class="container">
+      <div class="header__inner">
+        <a class="logo" href="#top" aria-label="Go to top">
+          <img class="logo__img" src="Images/logo.svg" alt="Giulio logo" />
+          <span class="logo__name">Giulio</span>
+        </a>
+
+        <nav class="header__links" aria-label="Main navigation">
+          <a href="#projects" class="header__link">Projects</a>
+          <a href="#skills" class="header__link">Skills</a>
+          <a href="#about" class="header__link">About</a>
+          <a href="#contacts" class="header__link">Contacts</a>
+        </nav>
+      </div>
+    </div>
   </header>
 
-  <section class="hero">
-    <h1>Hello, I am Bucchi Giulio</h1>
-    <p>Hardware • Computer Engineering Student • Software </p>
-      <!--<a href="mailto:bucchigiulio@gmail.com">
-        Email
-      </a> -->
-  </section>
-  <section id="skills" class="skills-section fade-in" >
-          <h2 class="option-title">Skills</h2>
-          <div class="dna-container">
-                <div class="skill-card-dna">HTML</div>
-                <div class="skill-card-dna">CSS</div>
-                <div class="skill-card-dna">JS</div>
-                <div class="skill-card-dna">C++</div>
-                <div class="skill-card-dna">C</div>
-                <div class="skill-card-dna">Java</div>
-                <div class="skill-card-dna">Python</div>
-                <div class="skill-card-dna">MySQL</div>
-                <div class="skill-card-dna">Django</div>
-                <div class="skill-card-dna">PostegreSQL</div>
-                <div class="skill-card-dna">Arduino</div>
-                <div class="skill-card-dna">VHDL</div>
+  <main id="top" class="container content">
+    <section class="hero" id="home">
+      <div class="hero__content">
+        <h1 class="hero__title">Giulio <span>Bucchi</span></h1>
+        <div class="hero__description">
+          Computer Engineering student specializing in embedded systems, IoT and hardware automation.
+          Building solutions with Arduino, ESP32 & STM32, plus modern web technologies.
+        </div>
+        <a class="button button__primary" href="#contacts">Contact me =&gt;</a>
+      </div>
+
+      <div class="hero__illustrations" aria-hidden="true">
+    <img src="Images/hero.png" alt="Hero illustration" class="hero__image" />
+        <div class="dots" aria-hidden="true">
+          <span></span><span></span><span></span><span></span><span></span>
+          <span></span><span></span><span></span><span></span><span></span>
+          <span></span><span></span><span></span><span></span><span></span>
+          <span></span><span></span><span></span><span></span><span></span>
+        </div>
+      </div>
+    </section>
+
+    <figure class="quote fade-in">
+      <blockquote class="quote__text">Commitment, curiosity, and passion in every detail</blockquote>
+      <figcaption class="quote__author">— Giulio Bucchi</figcaption>
+    </figure>
+
+    <section class="projects fade-in" id="projects">
+      <div class="projects__header">
+        <h2 class="h2">Projects</h2>
+        <a class="projects__link" href="https://github.com/Giulio-Bucchi" target="_blank" rel="noopener noreferrer">More on GitHub ~~&gt;</a>
+      </div>
+
+      <div class="projects-carousel" aria-label="Projects list">
+        <button class="projects-carousel__btn projects-carousel__btn--left" type="button" aria-label="Scroll projects left">‹</button>
+        <button class="projects-carousel__btn projects-carousel__btn--right" type="button" aria-label="Scroll projects right">›</button>
+
+        <div class="project-list project-list--scroll" role="list">
+        <article class="project">
+          <ul class="project__techs">
+            <li class="project__tech">ESP32</li>
+            <li class="project__tech">Django</li>
+            <li class="project__tech">Docker</li>
+            <li class="project__tech">Dart</li>
+          </ul>
+          <div class="project__content">
+            <div class="project__name">Weigence</div>
+            <div class="project__description">
+              Hardware control system for warehouse automation using Arduino/ESP32 and a load-cell (HX711) to monitor inventory weight in real time.
+              Web dashboard in development.
+            </div>
+            <div class="project__links">
+              <a class="button" href="https://github.com/Weigence" target="_blank" rel="noopener noreferrer">GitHub =&gt;</a>
+            </div>
           </div>
-  </section>
+        </article>
 
-  <!-- Sezione About spostata sopra Projects -->
-  <section id="about" class="fade-in">
-    <h2>About Me :</h2>
-    <div class="about-content">
-      <p>
-       Computer Engineering student with hands-on experience in embedded systems and IoT projects.
-       Currently developing an automated warehouse monitoring system using Arduino, ESP32, 
-       serial/Bluetooth communication, and a custom web application. I use tools like Autodesk Inventor 
-       for mechanical design and mainly work with HTML, CSS, JavaScript, c++ and VHDL, PostgreSQL, along with 
-       microcontrollers and sensors for automation.
-      </p>
-    </div>
-  </section>
+        <article class="project">
+          <ul class="project__techs">
+            <li class="project__tech">VHDL</li>
+          </ul>
+          <div class="project__content">
+            <div class="project__name">32-bit ALU</div>
+            <div class="project__description">32-bit ALU designed in VHDL supporting 8 fundamental operations for FPGA-based applications.</div>
+            <div class="project__links">
+              <a class="button" href="https://github.com/Giulio-Bucchi/ALU" target="_blank" rel="noopener noreferrer">GitHub =&gt;</a>
+            </div>
+          </div>
+        </article>
 
-  <!-- Sezione Projects spostata sotto About -->
-  <section id="projects" class="fade-in">
-    <h2>Projects :</h2>
-    <div class="projects-grid">
-      <div class="project-card">
-        <div class="project-header">
-          <div class="project-icon">🔧</div>
-          <div class="project-title">Weigence</div>
-        </div>
-        <div class="project-description">
-         This project implements a hardware control system designed for warehouse automation, leveraging microcontrollers 
-         such as Arduino and ESP32. The system integrates a HX711 load cell amplifier paired with a 5kg load cell 
-         to accurately measure weight, enabling automatic monitoring of inventory levels in real time. Soon will be a web app...
-        </div>
-        <div class="project-tech">
-          <span class="tech-tag">Arduino</span>
-          <span class="tech-tag">C++</span>
-          <span class="tech-tag">Django</span>
-          <span class="tech-tag">PostgreSQL</span>
-          <span class="tech-tag">Html</span>
-          <span class="tech-tag">Css</span>
-        </div>
-        <div class="project-links">
-          <a href="https://github.com/Weigence" class="project-link">
-            GitHub
-          </a>
+        <article class="project">
+          <ul class="project__techs">
+            <li class="project__tech">C++</li>
+            <li class="project__tech">Python</li>
+          </ul>
+          <div class="project__content">
+            <div class="project__name">Satellite Orbit Simulator</div>
+            <div class="project__description">Keplerian orbital mechanics simulator that computes realistic trajectories and provides interactive visualization ideas.</div>
+            <div class="project__links">
+              <a class="button" href="https://github.com/Giulio-Bucchi/Orbita-Satellite" target="_blank" rel="noopener noreferrer">GitHub =&gt;</a>
+            </div>
+          </div>
+        </article>
         </div>
       </div>
+    </section>
 
-      <div class="project-card">
-        <div class="project-header">
-          <div class="project-icon"> 𓇲 </div>
-          <div class="project-title">ALU ( 32 BIT ) </div>
+    <section class="skills fade-in" id="skills">
+      <h2 class="h2">Skills</h2>
+      <div class="skills__content">
+        <div class="skills__illustrations illustrations" aria-hidden="true">
+          <div class="illustrations__logo"></div>
+          <div class="dots">
+            <span></span><span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span><span></span>
+          </div>
         </div>
-        <div class="project-description">
-         This project features a 32-bit Arithmetic Logic Unit (ALU) designed and implemented in VHDL. The ALU 
-         supports 8 fundamental operations, providing a versatile and efficient arithmetic and logic processing 
-         unit suitable for digital design and FPGA-based applications.
-        </div>
-        <div class="project-tech">
-          <span class="tech-tag">VHDL</span>
-        </div>
-        <div class="project-links">
-          <a href="https://github.com/Giulio-Bucchi/ALU" class="project-link">
-            GitHub
-          </a>
-        </div>
-      </div>
+        <div class="skills__list">
+          <div class="skill-block">
+            <div class="skill-block__name">Programming languages</div>
+            <ul class="skill-block__list">
+              <li class="skill-block__skill">C</li>
+              <li class="skill-block__skill">C++</li>
+              <li class="skill-block__skill">Python</li>
+              <li class="skill-block__skill">Java</li>
+              <li class="skill-block__skill">VHDL</li>
+              <li class="skill-block__skill">Dart</li>
+            </ul>
+          </div>
 
-      <div class="project-card">
-        <div class="project-header">
-          <div class="project-icon">📡</div>
-          <div class="project-title">Orbita Satellite</div>
-        </div>
-        <div class="project-description">
-        A satellite orbit simulator that implements Keplerian orbital mechanics to compute realistic 3D trajectories
-        around Earth, with interactive animated visualization.
-        </div>
-        <div class="project-tech">
-          <span class="tech-tag">C++</span>
-          <span class="tech-tag">Python</span>
-        </div>
-        <div class="project-links">
-          <a href="https://github.com/Giulio-Bucchi/Orbita-Satellite" class="project-link">
-            GitHub
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
+          <div class="skill-block">
+            <div class="skill-block__name">Frameworks & tools</div>
+            <ul class="skill-block__list">
+              <li class="skill-block__skill">Django</li>
+              <li class="skill-block__skill">Flutter</li>
+              <li class="skill-block__skill">Docker</li>
+              <li class="skill-block__skill">Git</li>
+            </ul>
+          </div>
 
-  <section id="contact" class="fade-in">
-    <h2>Contact</h2>
-    <div class="contact-grid">
-      <div class="contact-card">
-        <div class="contact-icon">📧</div>
-        <div class="contact-title">Email</div>
-        <div class="contact-info">bucchigiulio@gmail.com</div>
-        <a href="mailto:bucchigiulio@gmail.com" class="contact-link">
-          <span>📩</span> Send Email
-        </a>
+          <div class="skill-block">
+            <div class="skill-block__name">Hardware</div>
+            <ul class="skill-block__list">
+              <li class="skill-block__skill">Arduino</li>
+              <li class="skill-block__skill">ESP32</li>
+              <li class="skill-block__skill">STM32</li>
+            </ul>
+          </div>
+        </div>
       </div>
-      
-      <div class="contact-card">
-        <div class="contact-icon">💻</div>
-        <div class="contact-title">GitHub</div>
-        <div class="contact-info">github.com/Giulio-Bucchi</div>
-        <a href="https://github.com/Giulio-Bucchi" target="_blank" class="contact-link">
-          <span>🔗</span> View Profile
-        </a>
-      </div>
-      
-      <div class="contact-card">
-        <div class="contact-icon">💼</div>
-        <div class="contact-title">LinkedIn</div>
-        <div class="contact-info">work in progess..</div>
-        <a href="https://linkedin.com/in/giulio-bucchi" target="_blank" class="contact-link">
-          <span>🔗</span> Connect
-        </a>
-      </div>
-    </div>
-  </section>
-    
-  <footer>
-    <p>© 2025 Bucchi Giulio</p>
-  </footer>
+    </section>
 
-  <script src="script.js"></script>
+    <section class="about fade-in" id="about">
+      <div class="about__content">
+        <h2 class="h2">About</h2>
+        <div class="about__text">
+          <p class="about__description">I’m a Computer Engineering student focused on embedded systems and connected devices.</p>
+          <p class="about__description">I enjoy building hardware prototypes, automations and dashboards that make the physical world measurable and controllable.</p>
+        </div>
+        <a class="button" href="#projects">See projects -&gt;</a>
+      </div>
+    <img src="Images/about-me.png" alt="About illustration" class="about__image" aria-hidden="true" />
+    </section>
+
+    <section class="contacts fade-in" id="contacts">
+      <h2 class="h2">Contacts</h2>
+      <div class="contacts__content">
+        <p class="contacts__description">Want to collaborate or just say hi? Reach me here.</p>
+        <div class="contacts__media">
+          <h3 class="contacts__title">Media</h3>
+          <div class="contacts__list">
+            <a class="contact" href="mailto:bucchigiulio@gmail.com">
+              <img class="contact__icon" src="Images/icons/email.svg" alt="" />
+              <div class="contact__name">bucchigiulio@gmail.com</div>
+            </a>
+            <a class="contact" href="https://github.com/Giulio-Bucchi" target="_blank" rel="noopener noreferrer">
+              <img class="contact__icon" src="Images/icons/github.svg" alt="" />
+              <div class="contact__name">@Giulio-Bucchi</div>
+            </a>
+            <a class="contact" href="https://www.linkedin.com/in/giulio-bucchi" target="_blank" rel="noopener noreferrer">
+              <img class="contact__icon" src="Images/icons/linkedin.svg" alt="" />
+              <div class="contact__name">Giulio Bucchi</div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer__inner">
+          <div class="footer__info">
+            <div class="footer__header">
+              <div class="logo"><div class="logo__name">Giulio</div></div>
+              <a class="footer__email" href="mailto:bucchigiulio@gmail.com">bucchigiulio@gmail.com</a>
+            </div>
+            <p class="footer__description">Computer Engineering — Embedded systems, IoT & hardware automation.</p>
+          </div>
+          <div class="footer__media">
+            <div class="footer__title">Media</div>
+            <div class="footer__list">
+              <a class="media" href="https://github.com/Giulio-Bucchi" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                <img class="media__icon" src="Images/icons/github.svg" alt="" />
+              </a>
+              <a class="media" href="https://www.linkedin.com/in/giulio-bucchi" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                <img class="media__icon" src="Images/icons/linkedin.svg" alt="" />
+              </a>
+              <a class="media" href="mailto:bucchigiulio@gmail.com" aria-label="Email">
+                <img class="media__icon" src="Images/icons/email.svg" alt="" />
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="footer__copyright">© 2026 Giulio Bucchi</div>
+      </div>
+    </footer>
+  </main>
+
+  <script src="script.js" defer></script>
 </body>
 </html>
