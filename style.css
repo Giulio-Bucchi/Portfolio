@@ -366,25 +366,7 @@ ul {
 }
 
 .hero__placeholder {
-  width: min(360px, 100%);
-  height: auto;
-  aspect-ratio: 4/3;
-  border: 1px solid var(--border);
-  border-bottom: 1px solid var(--primary);
-  background: linear-gradient(135deg, rgba(var(--primary-rgb), 0.08), rgba(var(--secondary-rgb), 0.08));
-  position: relative;
-  z-index: 2;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--gray-2);
-  font-size: 14px;
-}
-
-.hero__placeholder::after {
-  content: "🖼️";
-  font-size: 48px;
-  opacity: 0.3;
+  display: none;
 }
 
 .hero__status {
@@ -763,28 +745,6 @@ ul {
   border-right: 1px solid var(--border);
   border-top: 1px solid var(--border);
   background: linear-gradient(180deg, rgba(var(--primary-rgb), 0.06), rgba(var(--secondary-rgb), 0.06));
-}
-
-.about__placeholder {
-  flex: 1 1 0;
-  max-width: 340px;
-  aspect-ratio: 4/5;
-  width: 100%;
-  height: auto;
-  border-bottom: 1px solid var(--primary);
-  border-left: 1px solid var(--border);
-  border-right: 1px solid var(--border);
-  border-top: 1px solid var(--border);
-  background: linear-gradient(135deg, rgba(var(--primary-rgb), 0.08), rgba(var(--secondary-rgb), 0.08));
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.about__placeholder::after {
-  content: "🎨";
-  font-size: 64px;
-  opacity: 0.3;
 }
 
 /* Contacts */
